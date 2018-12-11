@@ -37,13 +37,14 @@
     "webpack-cli": "^3.1.2"
   },
   "scripts": {
-    "start": "NODE_ENV=production node app.js",
+    "start:prod": "NODE_ENV=production node app.js",
     "test": "npm run lint && npm run custom-tests && echo 'Done.'",
     "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo",
-    "run:dev": "npm-run-all --parallel lift webpack:dev", 
+    "start:dev": "npm-run-all --parallel lift webpack:dev", 
     "webpack:dev": "webpack --mode development",
-    "lift": "sails lift"
+    "lift": "sails lift",
+    "start": "npm start:dev"
   },
   "main": "app.js",
   "repository": {

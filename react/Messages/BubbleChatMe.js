@@ -4,19 +4,20 @@ const bubbleChatStyles = {
   borderStyle:'solid',
   maxWidth:"60vw",
   borderRadius: '10px',
-  paddingRight:'2px',
-  paddingLeft:'8px'
+  padding:".1em",
+  margin: ".3em",
 }
 
 class BubbleChatMe extends Component {
   render(){
-    const { message } = this.props
+    const { message, me, sender } = this.props
 
-    const side = this.props.me ? "flex-end" : "flex-start"
+    const side = me ? "flex-end" : "flex-start"
 
     return(
         <div style={{...bubbleChatStyles, alignSelf: side }} >
-          {message}
+          <p>{message}</p>
+          { me ? null : <p style={{ fontSize:".5rem" }}>From: {sender}</p> }
         </div>
     )
 

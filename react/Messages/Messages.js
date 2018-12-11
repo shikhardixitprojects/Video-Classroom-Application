@@ -39,7 +39,7 @@ class Messages extends Component {
 
     return(
       <div style={messagesStyles}>
-        { this.state.messages.map( (v,k) => <BubbleChat message={v.message} me={ this.props.screenName === v.name} key={k} />) }
+        { this.state.messages.map( (v,k) => <BubbleChat message={v.message} me={ this.props.screenName === v.name} key={k} sender={v.name} />) }
       </div>
     )
 
