@@ -1,0 +1,30 @@
+.message-input {
+  display: flex;
+  height: 3rem;
+  width: 100vw;
+  background: #fff;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.message-input input {
+  width:0;
+  flex:1;
+  height:2rem;
+  margin: 0 .5rem;
+}
+
+.message-input button {
+  margin: 0 .5rem;
+  background: #002266;
+  border-radius: 50%;
+  color:white;
+  border:0;
+  height:2.5rem;
+  width:2.5rem;
+  box-sizing: border-box;
+}
+
+.message-input button::before {
+  content: "→";
+}

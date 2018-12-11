@@ -1,0 +1,12 @@
+.title {
+  display: flex;
+  height: 3rem;
+  width: 100vw;
+  background: #002266;
+  align-items: center;
+  justify-content: center;
+}
+
+.title h3 {
+  color: #fff;
+}

@@ -8,7 +8,7 @@
 module.exports = {
 
   sub: function(req, res) {
-        if(! req.isSocket())
+        if(! req.isSocket )
         {
           return res.badRequest();
         }
