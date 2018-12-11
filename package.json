@@ -44,7 +44,7 @@
     "start:dev": "npm-run-all --parallel lift webpack:dev", 
     "webpack:dev": "webpack --mode development",
     "lift": "sails lift",
-    "start": "npm start:dev"
+    "start": "npm run start:dev"
   },
   "main": "app.js",
   "repository": {
