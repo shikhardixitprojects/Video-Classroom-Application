@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import UrlParser from "../lib/UrlParser";
+
 const bubbleChatStyles = {
   borderStyle:'solid',
   maxWidth:"60vw",
@@ -13,6 +15,8 @@ class BubbleChatMe extends Component {
     const { message, me, sender } = this.props
 
     const side = me ? "flex-end" : "flex-start"
+
+    console.log(UrlParser(message))
 
     return(
         <div style={{...bubbleChatStyles, alignSelf: side }} >
