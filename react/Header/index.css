@@ -1,10 +1,11 @@
 .title {
   display: flex;
   height: 3rem;
-  width: 100vw;
+  width: 75vw;
   background: #002266;
   align-items: center;
   justify-content: center;
+  margin-bottom: .5em;
 }
 
 .title h3 {

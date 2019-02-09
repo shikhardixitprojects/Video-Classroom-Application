@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BubbleChat from './BubbleChatMe'
 
 const messagesStyles = {
-  width:"100vw",
+  width:"75vw",
   flex:1,
   display:"flex",
   flexDirection:"column",
@@ -10,12 +10,16 @@ const messagesStyles = {
   marginLeft:"10px"
 }
 
+const randomColor = () => '#' + Math.floor(Math.random()*16777215).toString(16);
+
+
 class Messages extends Component {
 
   constructor() {
     super();
     this.state = {
-      messages:[]
+      messages:[],
+      users:[],
     }
   }
 
@@ -25,21 +29,33 @@ class Messages extends Component {
 
     api.listen( this.handleNewMessage.bind(this) )
 
-    this.setState({ messages: await api.get() })
+    const messages = await api.get()
+    const users = messages.map(x => ({ name:x.name, color: randomColor()}))
+    this.setState({ messages, users })
   }
 
   handleNewMessage(newMsg) {
-    const { messages } = this.state;
+
+    const { messages, users } = this.state;
     const newMessages = messages.slice();
+    const newUsers = users.slice();
     newMessages.push(newMsg)
-    this.setState({ messages:newMessages })
+
+    if(!users.find( u => u.name === newMsg.name )) {
+      newUsers.push({name: newMsg.name, color: randomColor()});
+    }
+
+    this.setState({ messages:newMessages, users: newUsers })
   }
 
   render(){
 
+    const circleColor = randomColor();
+    const {users} = this.state;
+
     return(
       <div style={messagesStyles}>
-        { this.state.messages.map( (v,k) => <BubbleChat message={v.message} me={ this.props.screenName === v.name} key={k} sender={v.name} />) }
+        { this.state.messages.map( (v,k) => <BubbleChat message={v.message} me={ this.props.screenName === v.name} key={k} sender={v.name} users = {users}/>) }
       </div>
     )
 

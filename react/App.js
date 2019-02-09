@@ -12,14 +12,14 @@ class App extends Component {
     super(props);
 
     this.state = {
-     screenName: ""
+     screenName: "",
     }
     
     this.api = new MessageApi()
   }
 
   setScreenName(screenName){
-    this.setState({ screenName });
+    this.setState({ screenName }); 
   }
 
   render() {

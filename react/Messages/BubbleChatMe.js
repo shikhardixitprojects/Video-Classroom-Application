@@ -1,24 +1,42 @@
 import React, { Component } from 'react';
+import './messages.css';
 
 const bubbleChatStyles = {
-  borderStyle:'solid',
   maxWidth:"60vw",
   borderRadius: '10px',
   padding:".1em",
   margin: ".3em",
+  marginLeft: "1.5em",
+  paddingLeft: ".5em",
+  paddingRight: ".5em",
 }
+const bubbleChatNoBorderStlyes = {
+  maxWidth:"60vw",
+  padding:".1em",
+  margin: ".3em",
+}
+const nothing = {}
 
 class BubbleChatMe extends Component {
   render(){
-    const { message, me, sender } = this.props
+
+    const { message, me, sender, users } = this.props
 
     const side = me ? "flex-end" : "flex-start"
 
+    const messageColor = me ? "#3385ff" : "#e6e6e6"
+    const textColor = me ? "white" : "black"
+
+    let { color } = users.find(x => x.name === sender)
+
     return(
-        <div style={{...bubbleChatStyles, alignSelf: side }} >
+      <div style={{bubbleChatNoBorderStlyes, alignSelf: side}}>
+        <div className="circle" style={{...nothing, background: color}}>{sender.charAt(0).toUpperCase()}</div>
+        { me ? null : <p style={{ fontSize:"1rem", marginLeft: "3em" }}>{sender}</p> }
+        <div style={{...bubbleChatStyles, alignSelf: side, background: messageColor, color: textColor}} >
           <p>{message}</p>
-          { me ? null : <p style={{ fontSize:".5rem" }}>From: {sender}</p> }
         </div>
+      </div>
     )
 
   }
