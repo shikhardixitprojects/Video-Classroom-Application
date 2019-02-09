@@ -14,7 +14,7 @@ export default class MessageApi {
 
     async send(name, message) {
         const response = await fetch("/message", {
-            method:"POST", 
+            method:"POST",
             body: JSON.stringify({ name, message })
         })
 
@@ -26,5 +26,7 @@ export default class MessageApi {
     listen(cb) {
         window.io.socket.on("message", cb)
     }
+
+    
 
 }

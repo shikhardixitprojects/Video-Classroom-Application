@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './messages.css';
 
+import UrlParser from "../lib/UrlParser";
+
 const bubbleChatStyles = {
   maxWidth:"60vw",
   borderRadius: '10px',
@@ -28,6 +30,7 @@ class BubbleChatMe extends Component {
     const textColor = me ? "white" : "black"
 
     let { color } = users.find(x => x.name === sender)
+    console.log(UrlParser(message))
 
     return(
       <div style={{bubbleChatNoBorderStlyes, alignSelf: side}}>
