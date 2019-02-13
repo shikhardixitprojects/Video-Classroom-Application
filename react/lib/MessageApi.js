@@ -27,6 +27,6 @@ export default class MessageApi {
         window.io.socket.on("message", cb)
     }
 
-    
+
 
 }

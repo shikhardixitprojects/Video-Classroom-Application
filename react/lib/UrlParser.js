@@ -1,9 +1,10 @@
-export default function urlCheck(str) {
+export function urlCheckOld(str) {
   var regex = new RegExp('(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|(www\\.)?){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?', 'g');
 
   let haystack = str;
   let matchIndex = haystack.search(regex)
-  console.log(matchIndex)
+  let startInd = matchIndex;
+  let endInd = 0;
 
   let resultarray = [];
 
@@ -12,31 +13,60 @@ export default function urlCheck(str) {
   while (matchIndex !== -1) {
 
     if (spaceIndex === -1) {
-      resultarray.push(haystack.substring(matchIndex, haystack.length));
+
+      //haystackFinalUrl = haystack.substring(matchIndex, haystack.length)
+      resultarray.push({url: haystack.substring(matchIndex, haystack.length), startInd: startInd, endInd: startInd + (haystack.substring(matchIndex, haystack.length)).length});
       break;
     } else {
-      console.log(haystack)
-      resultarray.push(haystack.substring(matchIndex, spaceIndex))
+      endInd = spaceIndex;
+      resultarray.push({url: haystack.substring(matchIndex, spaceIndex), startInd: startInd, endInd: endInd})
+      startInd = spaceIndex + 1;
       haystack = haystack.substring(spaceIndex+1)
-      console.log(haystack)
       matchIndex = haystack.search(regex)
-      console.log(matchIndex)
     }
     spaceIndex = haystack.indexOf(' ', matchIndex)
-    //console.log(spaceIndex)
+
   }
-
-  // while (matchIndex !== -1) {
-  //
-  //
-  //
-  //   resultarray.push(match);
-  //   let matchLastIndex = match.index + match[0].length //match[0]?
-  //   haystack = haystack.substring(matchLastIndex);
-  //   match = haystack.search(regex);
-  // }
-
 
   return resultarray;
 
+}
+
+export const searchFromIndex = (str, regex, index = 0) => {
+  const matchIdx = str.substring(index).search(regex)
+  return matchIdx === -1 ? -1 : matchIdx + index;
+}
+
+export default function UrlParser(str) {
+  let regex = new RegExp('(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|(www\\.)?){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?', 'g');
+  let haystack = str;
+  let cursorIdx = 0;
+  const results = []
+
+  let matchIdx = searchFromIndex(haystack, regex, cursorIdx);
+
+  while(matchIdx !== -1) {
+    let endIdx = haystack.indexOf(" ", matchIdx);
+
+    if(endIdx === -1) {
+      results.push({
+        url: haystack.substring(matchIdx, haystack.length),
+        startIdx: matchIdx,
+        endIdx: haystack.length
+      })
+      break;
+    } else {
+      // push match to results array
+      results.push({
+        url: haystack.substring(matchIdx, endIdx),
+        startIdx: matchIdx,
+        endIdx,
+      })
+      // reset matchIdx
+      cursorIdx = endIdx + 1
+      matchIdx = searchFromIndex(haystack, regex, cursorIdx);
+    }
+  }
+
+  return results;
 }
