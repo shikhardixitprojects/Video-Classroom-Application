@@ -8,7 +8,8 @@ import './index.css'
     super(props);
      this.state = {
       modalVisible: true,
-      textInput: ""
+      textInput: "",
+      senderList: []
   }
 }
 

@@ -55,5 +55,7 @@ describe("Separating Urls", () => {
         messagePart: "   "
       }
     ])
+    const msg = "HAI"
+    expect(UrlSeparator(UrlParser(msg), msg)).toEqual([ { url: false, messagePart:"HAI" }])
   })
 })
