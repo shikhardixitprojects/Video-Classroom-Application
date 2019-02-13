@@ -9,28 +9,35 @@ export default function UrlSeparator(urls, str) {
 
   let cursorIdx = 0;
 
-  for (let r = 0; r < urls.length; r++) {
-    while (cursorIdx !== urls[r].endIdx) {
-      if (cursorIdx === urls[r].startIdx) {
-        results.push({
-          url: true,
-          messagePart: urls[r].url
-        })
-        cursorIdx = urls[r].endIdx
-      } else {
-        results.push({
-          url: false,
-          messagePart: str.substring(cursorIdx, urls[r].startIdx)
-        })
-        cursorIdx = urls[r].startIdx
+  if (urls.length == 0) {
+    results.push({
+      url: false,
+      messagePart: str
+    })
+  } else {
+    for (let r = 0; r < urls.length; r++) {
+      while (cursorIdx !== urls[r].endIdx) {
+        if (cursorIdx === urls[r].startIdx) {
+          results.push({
+            url: true,
+            messagePart: urls[r].url
+          })
+          cursorIdx = urls[r].endIdx
+        } else {
+          results.push({
+            url: false,
+            messagePart: str.substring(cursorIdx, urls[r].startIdx)
+          })
+          cursorIdx = urls[r].startIdx
+        }
       }
     }
-  }
 
-  results.push({
-    url: false,
-    messagePart: str.substring(urls[urls.length-1].endIdx, str.length)
-  })
+    results.push({
+      url: false,
+      messagePart: str.substring(urls[urls.length - 1].endIdx, str.length)
+    })
+  }
 
   return results;
 

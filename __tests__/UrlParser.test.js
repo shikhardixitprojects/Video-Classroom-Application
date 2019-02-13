@@ -1,6 +1,6 @@
 import UrlParser, { searchFromIndex as search } from '../react/lib/UrlParser';
 
-describe.only("Parsing Urls", () => {
+describe("Parsing Urls", () => {
 
   it("should parse a string containing only a url", () => {
     let result = UrlParser("www.google.com")

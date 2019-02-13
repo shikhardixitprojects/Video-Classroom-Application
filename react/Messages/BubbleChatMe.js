@@ -40,7 +40,11 @@ class BubbleChatMe extends Component {
       if(!x.url) {
         return <span>{x.messagePart}</span>
       } else {
-        return <a href={x.messagePart}>{x.messagePart}</a>
+        const absUrl = x.messagePart.match(/^https?:\/\//)
+        ? x.messagePart
+        : "http://" + x.messagePart
+
+        return <a href={absUrl} style={{color:textColor}}>{x.messagePart}</a>
       }
     })
 

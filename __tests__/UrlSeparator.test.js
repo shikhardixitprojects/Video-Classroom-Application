@@ -31,8 +31,7 @@ describe("Separating Urls", () => {
       }
     ])
 
-    let result2 = UrlSeparator(UrlParser("hi www.google.com hello www.google.com"), "hi www.google.com hello www.google.com   ")
-    console.log(result2)
+    let result2 = UrlSeparator(UrlParser("hi www.google.com hello www.google.com   "), "hi www.google.com hello www.google.com   ")
     expect(result2).toEqual([
       {
         url: false,
@@ -55,6 +54,8 @@ describe("Separating Urls", () => {
         messagePart: "   "
       }
     ])
+
+
     const msg = "HAI"
     expect(UrlSeparator(UrlParser(msg), msg)).toEqual([ { url: false, messagePart:"HAI" }])
   })
