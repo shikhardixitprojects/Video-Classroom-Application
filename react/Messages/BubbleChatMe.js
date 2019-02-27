@@ -12,13 +12,13 @@ const bubbleChatStyles = {
   marginLeft: "1.5em",
   paddingLeft: ".5em",
   paddingRight: ".5em",
+  fontSize: "1.75em"
 }
 const bubbleChatNoBorderStlyes = {
   maxWidth:"60vw",
   padding:".1em",
   margin: ".3em",
 }
-const nothing = {}
 
 class BubbleChatMe extends Component {
   render(){
@@ -53,19 +53,20 @@ class BubbleChatMe extends Component {
 
 
     return(
-      <div style={{bubbleChatNoBorderStlyes, alignSelf: side}}>
-      
-        <div className="circle" style={{...nothing, background: color}}>{sender.charAt(0).toUpperCase()}</div>
+      <div style={{bubbleChatNoBorderStlyes,  alignSelf: side}}>
+        { me ? null : <div className="circle" style={{ background: color }}>{sender.charAt(0).toUpperCase()}</div>}
         { me ? null : <p style={{ fontSize:"1rem", marginLeft: "3em" }}>{sender}</p> }
         <div style={{...bubbleChatStyles, alignSelf: side, background: messageColor, color: textColor}} >
           <p>{messageCmpts}</p>
-
-
         </div>
       </div>
     )
 
   }
 }
-<script src="/js/video.js"></script>
 export default BubbleChatMe
+
+//<div style={{float: "none", alignSelf: side}}>
+          //{ me ? null : <div className="circle" style={{ background: color }}>{sender.charAt(0).toUpperCase()}</div>}
+          //{ me ? null : <p style={{ fontSize:"1rem", marginLeft: "3em" }}>{sender}</p> }
+        //</div>

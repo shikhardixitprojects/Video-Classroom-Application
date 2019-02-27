@@ -4,6 +4,7 @@ import Header from './Header/Header';
 import Messages from './Messages/Messages'
 import ModalText from './Modal/ModalText';
 import MessageApi from './lib/MessageApi';
+import Videos from './VideoScroller/Videos';
 import './App.css';
 
 class App extends Component {
@@ -25,11 +26,18 @@ class App extends Component {
   render() {
 
     return(
-      <div className="App">
-        <ModalText onSetScreenName = {this.setScreenName.bind(this)} />
-        <Header screenName={this.state.screenName} />
-        <Messages api={this.api} screenName = {this.state.screenName} />
-        <TextInput api={this.api} screenName={this.state.screenName} />
+      <div>
+        <div className="App">
+          <ModalText onSetScreenName = {this.setScreenName.bind(this)} />
+          <Header screenName={this.state.screenName} />
+          <Messages api={this.api} screenName = {this.state.screenName} />
+          <TextInput api={this.api} screenName={this.state.screenName} />
+        </div>
+
+        <div className="rightApp">
+          <Videos/>
+          <Videos/>
+        </div>  
       </div>
     )
 
