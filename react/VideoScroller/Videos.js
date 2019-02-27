@@ -1,20 +1,33 @@
 import React, { Component } from 'react';
+import { VideoStreamApi } from '../lib/SocketApi';
 import './Videos.css';
 
 class Videos extends Component {
-    render(){
-        return(
-            <div className="right">
-                <div>
-                    <h3>Video Title Here</h3>
-                    <p>Short description</p>
-                    <video className="video" controls>
-                        <source src="mov_bbb.mp4" type="video/mp4"/>
-                    </video>
-                </div>
-            </div>
-        )
+
+  constructor() {
+    super();
+
+    this.state = {
+      videoSrc:""
     }
+  }
+
+  componentDidMount() {
+    const messenger = new VideoStreamApi()
+    messenger.setVideoStreamListener(function(image) {
+      this.setState({videoSrc:image})
+    }, this)
+  }
+
+  render(){
+      return(
+          <div className="right">
+                  <h3>Video Title Here</h3>
+                  <p>Short description</p>
+                  <img src={this.state.videoSrc} />
+          </div>
+      )
+  }
 }
 
 export default Videos

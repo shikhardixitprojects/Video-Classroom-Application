@@ -36,15 +36,15 @@ class BubbleChatMe extends Component {
     const urlSep = UrlSeparator(urls, message)
 
     // then map inside BubbleChatMe.js
-    const messageCmpts = urlSep.map( function(x) {
+    const messageCmpts = urlSep.map( function(x,k) {
       if(!x.url) {
-        return <span>{x.messagePart}</span>
+        return <span key={k}>{x.messagePart}</span>
       } else {
         const absUrl = x.messagePart.match(/^https?:\/\//)
         ? x.messagePart
         : "http://" + x.messagePart
 
-        return <a href={absUrl} style={{color:textColor}}>{x.messagePart}</a>
+        return <a key={k} href={absUrl} style={{color:textColor}}>{x.messagePart}</a>
       }
     })
 
