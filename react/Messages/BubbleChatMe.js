@@ -58,12 +58,15 @@ class BubbleChatMe extends Component {
         { me ? null : <p style={{ fontSize:"1rem", marginLeft: "3em" }}>{sender}</p> }
         <div style={{...bubbleChatStyles, alignSelf: side, background: messageColor, color: textColor}} >
           <p>{messageCmpts}</p>
+
+
         </div>
       </div>
     )
 
   }
 }
+<script src="/js/video.js"></script>
 export default BubbleChatMe
 
 //<div style={{float: "none", alignSelf: side}}>
