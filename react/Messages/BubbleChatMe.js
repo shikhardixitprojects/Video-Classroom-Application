@@ -66,7 +66,7 @@ class BubbleChatMe extends Component {
 
   }
 }
-<script src="/js/video.js"></script>
+
 export default BubbleChatMe
 
 //<div style={{float: "none", alignSelf: side}}>
