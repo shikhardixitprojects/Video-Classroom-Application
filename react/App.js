@@ -3,7 +3,7 @@ import TextInput from './Chatbox/TextInput';
 import Header from './Header/Header';
 import Messages from './Messages/Messages'
 import ModalText from './Modal/ModalText';
-import MessageApi from './lib/MessageApi';
+import { MessageApi } from './lib/SocketApi';
 import Videos from './VideoScroller/Videos';
 import './App.css';
 
@@ -15,12 +15,12 @@ class App extends Component {
     this.state = {
      screenName: "",
     }
-    
+
     this.api = new MessageApi()
   }
 
   setScreenName(screenName){
-    this.setState({ screenName }); 
+    this.setState({ screenName });
   }
 
   render() {
@@ -37,7 +37,7 @@ class App extends Component {
         <div className="rightApp">
           <Videos/>
           <Videos/>
-        </div>  
+        </div>
       </div>
     )
 
