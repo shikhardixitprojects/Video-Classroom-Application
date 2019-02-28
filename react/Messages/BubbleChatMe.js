@@ -12,7 +12,7 @@ const bubbleChatStyles = {
   marginLeft: "1.5em",
   paddingLeft: ".5em",
   paddingRight: ".5em",
-  fontSize: "1.75em"
+  fontSize: "3vw",
 }
 const bubbleChatNoBorderStlyes = {
   maxWidth:"60vw",
