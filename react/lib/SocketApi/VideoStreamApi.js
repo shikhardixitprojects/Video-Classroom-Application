@@ -14,4 +14,8 @@ export default class VideoMessenger extends SocketApi {
   setAudioStreamListener(fn, ctx) {
     this.io.socket.on(constants.AUDIO_EVENT, fn.bind(ctx))
   }
+
+  setScreenshareListener(fn, ctx) {
+    this.io.socket.on(constants.SCREEN_EVENT, fn.bind(ctx))
+  }
 }

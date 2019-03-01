@@ -35,8 +35,8 @@ class App extends Component {
         </div>
 
         <div className="rightApp">
-          <Videos/>
-          <Videos/>
+          <Videos streams="video"/>
+          <Videos streams="screen"/>
         </div>
       </div>
     )

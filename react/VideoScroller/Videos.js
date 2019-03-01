@@ -2,28 +2,37 @@ import React, { Component } from 'react';
 import { VideoStreamApi } from '../lib/SocketApi';
 import './Videos.css';
 
+
 class Videos extends Component {
 
   constructor() {
     super();
 
     this.state = {
-      videoSrc:""
+      videoSrc:"",
     }
   }
 
   componentDidMount() {
     const messenger = new VideoStreamApi()
-    messenger.setVideoStreamListener(function(image) {
-      this.setState({videoSrc:image})
-    }, this)
-  }
+
+    if( this.props.VIDEO_EVENT){
+      messenger.setVideoStreamListener(function(image) {
+        this.setState({videoSrc:image})
+      }, this)
+    }
+    else if(this.props.SCREEN_EVENT){
+      messenger.setScreenshareListener(function(image) {
+        this.setState({videoSrc:image})
+      }, this)
+    }
+    }
+
 
   render(){
       return(
           <div className="right">
-                  <h3>Video Title Here</h3>
-                  <p>Short description</p>
+                  <h3>Video Stream</h3>
                   <img src={this.state.videoSrc} />
           </div>
       )
