@@ -16,12 +16,12 @@ class Videos extends Component {
   componentDidMount() {
     const messenger = new VideoStreamApi()
 
-    if( this.props.VIDEO_EVENT){
+    if( this.props.streams==="video"){
       messenger.setVideoStreamListener(function(image) {
         this.setState({videoSrc:image})
       }, this)
     }
-    else if(this.props.SCREEN_EVENT){
+    else if(this.props.streams==="screen"){
       messenger.setScreenshareListener(function(image) {
         this.setState({videoSrc:image})
       }, this)
@@ -32,7 +32,7 @@ class Videos extends Component {
   render(){
       return(
           <div className="right">
-                  <h3>Video Stream</h3>
+                  <h6>{this.props.streams === "video" ? "Video Stream" : "Screenshare" }</h6>
                   <img src={this.state.videoSrc} />
           </div>
       )

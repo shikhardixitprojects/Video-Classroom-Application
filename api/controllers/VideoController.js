@@ -23,24 +23,20 @@ module.exports = {
   },
 
   emitting:function(req, res){
-    console.log("POST", ++count)
+    // console.log("video", ++count)
     if(! req.isSocket){
       return res.badRequest();
     }
-
-
 
     sails.sockets.broadcast(VIDEO_ROOM_NAME, VIDEO_EVENT, req.body.video)
     return res.ok();
   },
 
   screenrecording:function(req, res){
-    console.log("POST", ++count)
+    // console.log("screen", ++count)
     if(! req.isSocket){
       return res.badRequest();
     }
-
-
 
     sails.sockets.broadcast(VIDEO_ROOM_NAME, SCREEN_EVENT, req.body.video)
     return res.ok();
