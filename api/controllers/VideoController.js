@@ -9,7 +9,8 @@
 const VIDEO_ROOM_NAME = "the lamest stream room"
 const SCREEN_EVENT = "screenevent"
 const VIDEO_EVENT = "videoevent"
-let count = 0
+const AUDIO_EVENT = "audioevent"
+
 module.exports = {
 
 
@@ -23,7 +24,6 @@ module.exports = {
   },
 
   emitting:function(req, res){
-    // console.log("video", ++count)
     if(! req.isSocket){
       return res.badRequest();
     }
@@ -33,13 +33,18 @@ module.exports = {
   },
 
   screenrecording:function(req, res){
-    // console.log("screen", ++count)
     if(! req.isSocket){
       return res.badRequest();
     }
 
     sails.sockets.broadcast(VIDEO_ROOM_NAME, SCREEN_EVENT, req.body.video)
     return res.ok();
+  },
+
+  emitAudio: function(req,res) {
+    if(!req.isSocket) return res.badRequest();
+    sails.sockets.broadcast(VIDEO_ROOM_NAME, AUDIO_EVENT, req.body.audio)
+    return res.ok()
   }
 
 };
