@@ -45,7 +45,6 @@ class Videos extends Component {
         {
           video && <audio autoPlay ref={this.audio} src={audioSrc} /> 
         }
-        <p>{audioSrc}</p>
       </div>
     )
     
