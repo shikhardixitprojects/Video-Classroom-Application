@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { VideoStreamApi } from '../lib/SocketApi';
 import './Videos.css';
-
+  
 
 class Videos extends Component {
 
@@ -26,6 +26,7 @@ class Videos extends Component {
         this.setState({videoSrc:image})
       }, this)
     }
+
     }
 
 

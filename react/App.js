@@ -6,6 +6,7 @@ import ModalText from './Modal/ModalText';
 import { MessageApi } from './lib/SocketApi';
 import Videos from './VideoScroller/Videos';
 import './App.css';
+import getToken from './lib/getToken';
 
 class App extends Component {
 
@@ -17,6 +18,10 @@ class App extends Component {
     }
 
     this.api = new MessageApi()
+  }
+
+  componentDidMount() {
+    getToken()
   }
 
   setScreenName(screenName){
