@@ -49,6 +49,7 @@
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo",
     "start:dev": "npm-run-all --parallel lift webpack:dev",
     "webpack:dev": "webpack --mode development",
+    "webpack:prod": "webpack --mode production",
     "lift": "nodemon sails lift",
     "start": "npm run start:dev"
   },
