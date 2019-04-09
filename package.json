@@ -16,7 +16,8 @@
     "sails-hook-grunt": "^3.0.2",
     "sails-hook-orm": "^2.0.0-16",
     "sails-hook-sockets": "^1.4.0",
-    "socket.io-client": "^2.2.0"
+    "socket.io-client": "^2.2.0",
+    "twilio-video": "2.0.0-beta7"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
