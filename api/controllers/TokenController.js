@@ -1,9 +1,7 @@
 
 const AccessToken = require('twilio').jwt.AccessToken;
 const VideoGrant = AccessToken.VideoGrant;
-const videoGrant = new VideoGrant({
-  room: 'cool room',
-});
+const videoGrant = new VideoGrant();
 
 let counter=0;
 

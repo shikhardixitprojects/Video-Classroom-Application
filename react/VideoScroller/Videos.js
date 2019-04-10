@@ -1,50 +1,35 @@
 import React, { Component } from 'react';
-import { VideoStreamApi } from '../lib/SocketApi';
+import { attachWebcam, attachDesktop } from '../lib/TwilioApi'
 import './Videos.css';
 
 
 class Videos extends Component {
 
   constructor() {
-    super();
-    this.state = {
-      videoSrc:"",
-      audioSrc:"",
-    }
+    super()
+    this.videoElement = React.createRef()
   }
 
   componentDidMount() {
-    const messenger = new VideoStreamApi()
+    const { streams, connection } = this.props
 
-    if( this.props.streams==="video"){
-      messenger.setAudioStreamListener(function(sample) {
-        this.setState({audioSrc:sample})
-      },this)
-      messenger.setVideoStreamListener(function(image) {
-        this.setState({videoSrc:image})
-      }, this)
-
-    } else if(this.props.streams==="screen"){
-      messenger.setScreenshareListener(function(image) {
-        this.setState({videoSrc:image})
-      }, this)
+    const video = streams === "video"
+    if(!video) {
+      attachDesktop(connection, this.videoElement.current)
+    } else {
+      attachWebcam(connection, this.videoElement.current)
     }
+
   }
 
-
   render() {
-
-    const { videoSrc, audioSrc } = this.state;
     const { streams } = this.props
     const video = streams === "video"
 
     return (
       <div className="right">
         <h6>{ video ? "Video Stream" : "Screenshare" }</h6>
-        <img src={videoSrc} />
-        {
-          video && <audio autoPlay ref={this.audio} src={audioSrc} />
-        }
+        <video autoPlay ref={this.videoElement} />
       </div>
     )
 
