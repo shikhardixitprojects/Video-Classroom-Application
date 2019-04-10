@@ -3,9 +3,11 @@ import TextInput from './Chatbox/TextInput';
 import Header from './Header/Header';
 import Messages from './Messages/Messages'
 import ModalText from './Modal/ModalText';
-import MessageApi from './lib/MessageApi';
+import { MessageApi } from './lib/SocketApi';
+import Videos from './VideoScroller/Videos';
 import './App.css';
 const { connect, createLocalTracks } = require('twilio-video');
+import getToken from './lib/getToken';
 
 class App extends Component {
 
@@ -20,7 +22,7 @@ class App extends Component {
       console.error(`Unable to connect to Room: ${error.message}`);
     });
 
-    
+
   }
 
   constructor(props) {
@@ -33,6 +35,10 @@ class App extends Component {
     this.api = new MessageApi()
   }
 
+  componentDidMount() {
+    getToken()
+  }
+
   setScreenName(screenName){
     this.setState({ screenName });
   }
@@ -40,11 +46,18 @@ class App extends Component {
   render() {
 
     return(
-      <div className="App">
-        <ModalText onSetScreenName = {this.setScreenName.bind(this)} />
-        <Header screenName={this.state.screenName} />
-        <Messages api={this.api} screenName = {this.state.screenName} />
-        <TextInput api={this.api} screenName={this.state.screenName} />
+      <div>
+        <div className="App">
+          <ModalText onSetScreenName = {this.setScreenName.bind(this)} />
+          <Header screenName={this.state.screenName} />
+          <Messages api={this.api} screenName = {this.state.screenName} />
+          <TextInput api={this.api} screenName={this.state.screenName} />
+        </div>
+
+        <div className="rightApp">
+          <Videos streams="video"/>
+          <Videos streams="screen"/>
+        </div>
       </div>
     )
 

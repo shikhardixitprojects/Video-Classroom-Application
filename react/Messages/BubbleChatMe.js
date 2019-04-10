@@ -12,13 +12,13 @@ const bubbleChatStyles = {
   marginLeft: "1.5em",
   paddingLeft: ".5em",
   paddingRight: ".5em",
+  fontSize: "3vw",
 }
 const bubbleChatNoBorderStlyes = {
   maxWidth:"60vw",
   padding:".1em",
   margin: ".3em",
 }
-const nothing = {}
 
 class BubbleChatMe extends Component {
   render(){
@@ -36,15 +36,15 @@ class BubbleChatMe extends Component {
     const urlSep = UrlSeparator(urls, message)
 
     // then map inside BubbleChatMe.js
-    const messageCmpts = urlSep.map( function(x) {
+    const messageCmpts = urlSep.map( function(x,k) {
       if(!x.url) {
-        return <span>{x.messagePart}</span>
+        return <span key={k}>{x.messagePart}</span>
       } else {
         const absUrl = x.messagePart.match(/^https?:\/\//)
         ? x.messagePart
         : "http://" + x.messagePart
 
-        return <a href={absUrl} style={{color:textColor}}>{x.messagePart}</a>
+        return <a key={k} href={absUrl} style={{color:textColor}}>{x.messagePart}</a>
       }
     })
 
@@ -53,15 +53,23 @@ class BubbleChatMe extends Component {
 
 
     return(
-      <div style={{bubbleChatNoBorderStlyes, alignSelf: side}}>
-        <div className="circle" style={{...nothing, background: color}}>{sender.charAt(0).toUpperCase()}</div>
+      <div style={{bubbleChatNoBorderStlyes,  alignSelf: side}}>
+        { me ? null : <div className="circle" style={{ background: color }}>{sender.charAt(0).toUpperCase()}</div>}
         { me ? null : <p style={{ fontSize:"1rem", marginLeft: "3em" }}>{sender}</p> }
         <div style={{...bubbleChatStyles, alignSelf: side, background: messageColor, color: textColor}} >
           <p>{messageCmpts}</p>
+
+
         </div>
       </div>
     )
 
   }
 }
+
 export default BubbleChatMe
+
+//<div style={{float: "none", alignSelf: side}}>
+          //{ me ? null : <div className="circle" style={{ background: color }}>{sender.charAt(0).toUpperCase()}</div>}
+          //{ me ? null : <p style={{ fontSize:"1rem", marginLeft: "3em" }}>{sender}</p> }
+        //</div>

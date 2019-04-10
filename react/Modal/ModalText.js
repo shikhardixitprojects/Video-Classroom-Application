@@ -33,12 +33,13 @@ handleButtonClick() {
       return (
         <div className = "modal-container" style={{ display: modalDisplay }}>
           <div className = "modal-input">
+            <h3>Please input your real name</h3>
+            <a href="https://docs.google.com/document/d/1T75a2IVqzPl2ftkFDdvI48A3REZAAfpGDuePmHfDbTo/edit?usp=sharing" target="blank">Our policy</a>
             <p> Enter your name: </p>
             <input onChange={this.renderTextInput.bind(this)} value={ this.state.textInput } />
             <button onClick={this.handleButtonClick.bind(this)}>Enter </button>
           </div>
         </div>
-
       )
     }
   }

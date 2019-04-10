@@ -16,29 +16,20 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: [ 
+                use: [
                     "babel-loader",
                     "source-map-loader"
                 ]
-            }, 
+            },
             {
                 test: /\.(png|jpe?g|svg|gif)$/,
                 use: {
-                    loader: "file-loader", 
+                    loader: "file-loader",
                     options:{
                         name:"images/[hash].[ext]",
                     }
                 },
             },
-            {
-                test: /\.json$/,
-                use: {
-                    loader: "file-loader", 
-                    options:{
-                        name:"data/[hash].[ext]",
-                    }
-                },
-            }, 
             {
                 test: /\.css$/,
                 use: [
@@ -59,7 +50,7 @@ module.exports = {
         new CopyWebpackPlugin([
             {
                 from:path.resolve(__dirname, "react/dependencies/sails.io.js"),
-                to:"js/dependencies/sails.io.js" 
+                to:"js/dependencies/sails.io.js"
             },
         ])
     ],
