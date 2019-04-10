@@ -19,6 +19,8 @@ class App extends Component {
     }, error => {
       console.error(`Unable to connect to Room: ${error.message}`);
     });
+
+    
   }
 
   constructor(props) {
