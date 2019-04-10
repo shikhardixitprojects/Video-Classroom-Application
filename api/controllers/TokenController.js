@@ -12,9 +12,16 @@ module.exports = {
 
 
   const token = new AccessToken(
-    sails.config.twilioAccountSid,
-    sails.config.twilioApiKey,
-    sails.config.twilioApiSecret
+    if(process.env.NOD_ENV === "production"){
+      process.env.TWLIO_ACCOUNT_SID,
+      process.env.TWILIO_API_KEY,
+      process.env.TWILIO_API_SECRET
+    }
+    else{
+      sails.config.twilioAccountSid,
+      sails.config.twilioApiKey,
+      sails.config.twilioApiSecret
+    }
   );
   token.addGrant(videoGrant);
   token.identity = "user" + (counter++);
