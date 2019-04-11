@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-module.exports = {
+module.exports = (env, argv) => ({
     entry: {
         entry: path.resolve(__dirname, 'react/index.js')
     },
@@ -54,9 +54,9 @@ module.exports = {
             },
         ])
     ],
-    watch:true,
+    watch: argv.mode === "development" ? true : false,
     devtool:'source-map',
     resolve:{
         extensions: [ ".js", ".jsx" ]
     }
-}
+})
