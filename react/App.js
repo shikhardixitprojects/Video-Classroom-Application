@@ -20,6 +20,7 @@ class App extends Component {
 
     this.api = new MessageApi()
     this.connection = new TwilioConnection()
+    console.log(this.connection)
   }
 
   setScreenName(screenName){
