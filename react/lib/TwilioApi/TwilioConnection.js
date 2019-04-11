@@ -11,11 +11,9 @@ export default class TwilioConnection {
   constructor() {
     this.ready = false
     this.backlog = []
-    console.log('created?')
     getToken().then( token => {
       this.ready = true
       this.token = token
-      console.log(token)
     }).then(this.onReady.bind(this))
   }
 
@@ -33,10 +31,9 @@ export default class TwilioConnection {
         })
       })
     }
-    console.log("connecting?")
     try {
       return await connect(this.token, config).then(room => {
-        console.log(`Successfully joined a Room: ${room}`, config);
+        console.log(`Successfully joined a Room: ${room}`);
         room.on('participantConnected', participant => {
           console.log(`A remote Participant connected: ${participant}`);
         });
