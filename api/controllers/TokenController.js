@@ -12,7 +12,7 @@ module.exports = {
     let token;
     if(process.env.NODE_ENV === "production"){
       token = new AccessToken(
-        process.env.TWLIO_ACCOUNT_SID,
+        process.env.TWILIO_ACCOUNT_SID,
         process.env.TWILIO_API_KEY,
         process.env.TWILIO_API_SECRET
 
