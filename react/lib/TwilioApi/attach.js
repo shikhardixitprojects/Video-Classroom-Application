@@ -1,5 +1,5 @@
 const attach = (twilioConnection, videoElement, roomName) => {
-  twilioConnection.connect({ name:roomName }).then( room => {
+  twilioConnection.connect({ name:roomName, video: false, audio:false }).then( room => {
 
     let instructor;
     for( const [key, value] of room.participants ) {
