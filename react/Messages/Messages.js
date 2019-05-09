@@ -17,6 +17,7 @@ class Messages extends Component {
 
   constructor() {
     super();
+    this.msgContain = React.createRef();
     this.state = {
       messages:[],
       users:[],
@@ -48,13 +49,17 @@ class Messages extends Component {
     this.setState({ messages:newMessages, users: newUsers })
   }
 
+  componentDidUpdate(){
+    this.msgContain.current.scrollTop = this.msgContain.current.scrollHeight;
+  }
+
   render(){
 
     const circleColor = randomColor();
     const {users} = this.state;
 
     return(
-      <div style={messagesStyles}>
+      <div ref={this.msgContain} style={messagesStyles}>
         { this.state.messages.map( (v,k) => <BubbleChat message={v.message} me={ this.props.screenName === v.name} key={k} sender={v.name} users = {users}/>) }
       </div>
     )
